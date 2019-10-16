@@ -1,0 +1,43 @@
+import materias.*
+import alumno.*
+
+describe "Estudiante"{
+	
+	const intro = new Materia(nombre = "Introduccion a la Programacion",correlativa =#{})
+	const epl = new Materia(nombre = "Elementos de Programacion")
+	const mate1 = new Materia(nombre = "Matematica 1")
+	const obj1 = new Materia(nombre = "Objetos 1")
+	const obj2 = new Materia(nombre = "Objetos 2", )
+	const quimica = new Materia(nombre = "Quimica")
+	
+	// defino carreras
+	const tpi = new Carrera(nombre = "tpi", materias = [intro,mate1,obj1,epl,obj2])
+	const medicina = new Carrera(nombre = "medicina" , materias=[quimica])
+	
+	// defino el alumno
+	const roque = new Alumno(nombre = "Roque")
+	
+	fixture {
+		roque.aprobo(obj1,7)
+		roque.aprobo(mate1,10)
+	}
+	
+	test "cantidad materias aprobadas"{
+	assert.equals(2, roque.cantidadAprobadas())
+	}
+	
+	test "determinar si un estudiante se puede inscribir"{
+	assert.that(roque.puedeInscribirseA(obj2)) }
+	
+	test "determinar si un estudiante se puede inscribir"{
+	assert.notthat(roque.puedeInscribirseA(intro)) }
+	
+	test "determinar si un estudiante se puede inscribir"{
+	assert.notthat(roque.puedeInscribirseA(obj1)) }
+	
+	test "determinar si un estudiante se puede inscribir"{
+	assert.notthat(roque.puedeInscribirseA(latin)) }
+	
+	
+		
+}
